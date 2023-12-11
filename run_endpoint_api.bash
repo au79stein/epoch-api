@@ -4,8 +4,9 @@ NAMESPACE="epoch-api"
 
 create_namespace() {
   NS=$1
-  kubectl create namespace${NS}
-  
+  kubectl create namespace ${NS}
+}
+
 set_default_namespace() {
   NS=$1
   kubectl  config set-context --current --namespace=${NS}
