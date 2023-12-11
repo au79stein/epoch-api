@@ -53,4 +53,4 @@ desc_svc epoch-api-lb
 sleep 15
 my_endpoint="$(get_endpoint)"
 echo "endpoint is: $my_endpoint"
-curl "${my_endpoing}:9000"
+curl ${my_endpoing}:9000
