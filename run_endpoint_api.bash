@@ -35,7 +35,7 @@ desc_svc() {
 }
 
 get_endpoint() {
-  kubectl get svc epoch-api-lb | awk '/^epoch-api-lb/ {print $4} ' | awk -F"," {print $1}
+  kubectl get svc epoch-api-lb | awk '/^epoch-api-lb/ {print $4}' | awk -F"," '{print $1}'
 }
 
 ###
