@@ -31,7 +31,7 @@ get_svc() {
 desc_svc() {
   SVCN=$1
 
-  kubect describe svc ${SVCN}
+  kubectl describe svc ${SVCN}
 }
 
 ###
