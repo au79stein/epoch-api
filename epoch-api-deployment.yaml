@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: epoch-api-deployment
+  namespace: epoch-api
+  labels:
+    app: epoch-api-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: epoch-api-app
+  template:
+    metadata:
+      labels:
+        app: epoch-api-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      containers:
+      - name: epoch-api-container
+        image: datarich/epoch-api:latest
+        ports:
+        - name: http
+          containerPort: 8080
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        kubernetes.io/os: linux
