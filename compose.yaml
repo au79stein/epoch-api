@@ -1,0 +1,9 @@
+services:
+  app:
+    image: datarich/epoch-api:latest
+    command: sh -c "python app.py"
+    ports:
+      - 30000:8080
+    working_dir: /app
+    volumes:
+      - ./:/app
