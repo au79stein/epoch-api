@@ -110,3 +110,26 @@ curl 192.168.1.230:30000
 }
 ```
 
+### push container image to hub.docker.com
+
+```
+$ docker tag epoch-api:latest datarich/epoch-api:latest
+```
+
+```
+$ docker push datarich/epoch-api:latest
+The push refers to repository [docker.io/datarich/epoch-api]
+f6b229a42b87: Pushed
+8fd6951d938e: Pushed
+10ad1f76ec8b: Pushed
+cb963b754be3: Layer already exists
+3efcbcee67ed: Layer already exists
+ec62b0a7261a: Layer already exists
+4882946e114b: Layer already exists
+644f76542c61: Layer already exists
+74a2a09a3cec: Layer already exists
+92770f546e06: Layer already exists
+latest: digest: sha256:0d34ffcff5683e94500196092f673b11a5e87862838fffd0a5164f46a8a710bf size: 2410
+```
+
+
