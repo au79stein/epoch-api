@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 NAMESPACE="epoch-api"
 
@@ -50,7 +51,9 @@ get_pods
 run_cmd apply epoch-api-lb.yaml
 get_svc epoch-api-lb
 desc_svc epoch-api-lb
+echo "sleeping, waiting for loadbalancer"
+echo "should be untimes waiting for state to change from pending"
 sleep 15
 my_endpoint="$(get_endpoint)"
 echo "endpoint is: $my_endpoint"
-curl ${my_endpoing}:9000
+curl ${my_endpoint}:9000
