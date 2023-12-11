@@ -34,6 +34,10 @@ desc_svc() {
   kubectl describe svc ${SVCN}
 }
 
+get_endpoint() {
+  kubectl get svc epoch-api-lb | awk '/^epoch-api-lb/ {print $4} ' | awk -F"," {print $1}
+}
+
 ###
 
 create_namespace ${NAMESPACE}
@@ -44,3 +48,5 @@ get_pods
 run_cmd apply epoch-api-lb.yaml
 get_svc epoch-api-lb
 desc_svc epoch-api-lb
+sleep 15
+get_endpoint
