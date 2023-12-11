@@ -35,7 +35,9 @@ desc_svc() {
 }
 
 get_endpoint() {
-  kubectl get svc epoch-api-lb | awk '/^epoch-api-lb/ {print $4}' | awk -F"," '{print $1}'
+  local result
+  result=$(kubectl get svc epoch-api-lb | awk '/^epoch-api-lb/ {print $4}' | awk -F"," '{print $1}')
+  echo "$result"
 }
 
 ###
@@ -49,4 +51,6 @@ run_cmd apply epoch-api-lb.yaml
 get_svc epoch-api-lb
 desc_svc epoch-api-lb
 sleep 15
-get_endpoint
+my_endpoint="$(get_endpoint)"
+echo "endpoint is: $my_endpoint"
+curl "${my_endpoing}:9000"
