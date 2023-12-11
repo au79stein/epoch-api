@@ -38,9 +38,9 @@ desc_svc() {
 
 create_namespace ${NAMESPACE}
 set_default_namespace ${NAMESPACE}
-getpods
+get_pods
 run_cmd apply epoch-api-deployment.yaml
-getpods
+get_pods
 run_cmd apply epoch-api-lb.yaml
 get_svc epoch-api-lb
 desc_svc epoch-api-lb
