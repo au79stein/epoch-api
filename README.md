@@ -19,6 +19,7 @@ the form {"The current epoch time": <EPOCH_TIME>} where <EPOCH_TIME> is an integ
 ## Necessary Tools
 1. running kubernetes cluster
 2. kubectl is required: version 1.27 (+/-)
+3. git to clone the repo instead of copy-pasta
 
 ## GitHub
 Files, etc can be accessed [here](https://github.com/au79stein/epoch-api)
@@ -39,6 +40,29 @@ create a Jenkins (or similar) pipeline that will do everything for you - which i
 but if not, this is extra work (even using [JCasC](https://www.jenkins.io/projects/jcasc/)
 
 ### Steps
+Sorry, I thought I would have more time to do this but this was a bad three days :)  
+I took a bunch of short cuts in order to do this in a few hours today...
+
+## Steps to Install and Run
+
+On a server that has access to your kubernetes cluster...
+
+1. Clone this repository
+   ```git clone https://github.com/au79stein/epoch-api.git```
+
+2. from within the repo:
+   * from a bash cli, run
+     ```bash run_endpoint_api.bash```
+
+3. this should in *theory*
+   * create a new namespace, epoch-api and make it the default 
+   * run kubectl -f apply epoch-api-deployment.yaml
+   * run kubectl -f apply epoch-api-lb.yaml
+   * it should wait until the loadbalancer is spun-up but I ran out of time to do it the right way
+   * it will sleep 15 seconds until at least in my environment the loadbalancer is running
+   * it will return the endpoint to use for your curl commands
+   * it will run an initial curl command and hopefully display the epoch time in seconds.
+
 
 
 ## References
