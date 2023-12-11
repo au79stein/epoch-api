@@ -15,6 +15,7 @@ set_default_namespace() {
 
 get_pods() {
   kubectl get pods -o wide
+  echo
 }
 
 run_cmd() {
@@ -22,17 +23,20 @@ run_cmd() {
   CMD=$1
 
   kubectl ${CMD} -f ${CMDF}
+  echo
 }
 
 get_svc() {
   SVCN=$1
   kubectl get svc ${SVCN}
+  echo
 }
 
 desc_svc() {
   SVCN=$1
 
   kubectl describe svc ${SVCN}
+  echo
 }
 
 get_endpoint() {
@@ -52,8 +56,9 @@ run_cmd apply epoch-api-lb.yaml
 get_svc epoch-api-lb
 desc_svc epoch-api-lb
 echo "sleeping, waiting for loadbalancer"
-echo "should be untimes waiting for state to change from pending"
+echo "should be untimed waiting for state to change from pending"
 sleep 15
 my_endpoint="$(get_endpoint)"
 echo "endpoint is: $my_endpoint"
+echo "curl command is curl ${my_endpoint}:9000" 
 curl ${my_endpoint}:9000
